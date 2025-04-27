@@ -46,7 +46,7 @@ public class SimulationControllerTests {
     }
 
     @Test
-    void when_simulate_then_response_body_should_not_be_empty() throws Exception {
+    void when_simulate_18k_monthly_and_300k_bonus_then_response_should_have_results() throws Exception {
         IITRequest request = new IITRequest();
         request.setAnnualWageIncome(BigDecimal.valueOf(18000 * 12));
         request.setAnnualOneTimeBonus(BigDecimal.valueOf(300000));
@@ -54,15 +54,19 @@ public class SimulationControllerTests {
         String json = objectMapper.writeValueAsString(request);
 
         MockHttpServletResponse httpResponse = mvc.perform(
-                post(SimulationController.PATH + "/simulate")
-                        .content(json)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+                        post(SimulationController.PATH + "/simulate")
+                                .content(json)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
         String responseContent = httpResponse.getContentAsString();
 
         assertThat(responseContent).isNotEmpty();
+        assertThat(responseContent)
+                .contains("83,880")
+                .contains("72,870")
+                .contains("traceLog");
     }
 }
