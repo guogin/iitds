@@ -1,11 +1,7 @@
 package com.yahaha.iitds;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yahaha.iit.calc.IITCalculator;
 import com.yahaha.iit.calc.IITRequest;
-import com.yahaha.iit.calc.IITResponse;
-import com.yahaha.iit.calc.TraceableTaxCalculationResult;
-import com.yahaha.iit.util.MoneyUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +14,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
